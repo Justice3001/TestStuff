@@ -1,20 +1,39 @@
-//just a quick test to git stuff
+//funtion to fetch pokemon by name or id
+async function fetchPokemonDetails(id) {
 
-let start=Date.now();
+    //api 
+    const url=`https://pokeapi.co/api/v2/pokemon/${id}/`;
 
-console.log('yea this is cool right');
+    try {
 
-//cool now im in the test branch now does it make a differecne
-//i dont think it does to be honest with you. how do you feel about that. 
-//the keys here feel faster and smoother in a sense. why not keep it.
-//are you going to switch it out. i cant say im going to change it but i will consider it 
+        const response=await fetch(url);
 
-console.log("just some more text here...");
+        //check for errors
+        if(!response.ok){
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
 
+        //parse the data received
+        const data= await response.json();
 
+        //handle the data
+        const pokemonDetails = {
+            name:data.name,
+            type:data.types[0].type.name,
+            ability: data.abilities[0].ability.name 
+        };
 
-let end=Date.now();
+        //return data handled
+        return pokemonDetails;
 
-let duration= (end-start);
+    } catch(error) {
+        //log any errors during the fetch
+        console.log('fetch error:',error);
+    }
 
-console.log("this program took",duration,"seconds to complete.");
+}
+
+//call the pokemon function by name or id of pokemon
+fetchPokemonDetails(4).then(info => {
+    console.log('pokmeon info;', info );
+});
