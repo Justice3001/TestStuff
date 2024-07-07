@@ -1,4 +1,4 @@
-//generate random array of numbers then sort them
+//generate random array of numbers then sort them. this is test stuff here
 
 const getRandomNumber = (max, min) => {
   try {
@@ -35,7 +35,7 @@ const selectionSort = (array) => {
         minIndex = j;
       }
     }
-    //use array destructing used
+    //use array destructing better way than temp varaibles
   [array[i], array[minIndex]] = [array[minIndex], array[i]];
   }
   
