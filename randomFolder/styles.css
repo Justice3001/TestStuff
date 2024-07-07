@@ -1,0 +1,24 @@
+.first {
+    color: red;
+    border: 2px solid black;
+    margin-right: 300px;
+    
+
+    
+
+}
+
+
+.second{
+    font-size: 2em;
+    font-weight: 400;
+}
+
+.header{
+    font-size: 3em;
+    font-weight: 400;
+}
+
+body {
+    background-color: blanchedalmond;
+}
