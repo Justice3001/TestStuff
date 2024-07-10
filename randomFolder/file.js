@@ -1,53 +1,41 @@
-//generate random array of numbers then sort them. this is test stuff here
+//classes in javascript example of inheriitenc
 
-const getRandomNumber = (max, min) => {
-  try {
-    if (min > max) {
-      throw new Error("min value must not be bigger than max value");
-    } else {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-  } catch (error) {
-    console.error("error in function", error.message);
-    return null;
-  }
-};
-
-//random array function
-const getRandomArray = (max, min, arrayLength) => {
-  let array = [];
-  for (let i = 0; i < arrayLength; i++) {
-    let randomNumber = getRandomNumber(max, min);
-    array.push(randomNumber);
+class Person {
+  constructor(name, age, FavCar) {
+    this.name = name;
+    this.age = age;
+    this.FavCar = FavCar;
   }
 
-  return array;
-};
-
-//sort the array
-const selectionSort = (array) => {
-  let n = array.length;
-
-  for (let i = 0; i < n-1; i++) {
-    let minIndex = i;
-    for (let j = i + 1; j < n; j++) {
-      if (array[j] < array[minIndex]) {
-        minIndex = j;
-      }
-    }
-    //use array destructing better way than temp varaibles
-  [array[i], array[minIndex]] = [array[minIndex], array[i]];
+  //funtion 1 or Parent function
+  greet() {
+    console.log(
+      `hello my name is ${this.name} and i am ${this.age} years old and my favorite car
+      is ${this.FavCar}`
+    );
   }
-  
+}
 
-  return array;
-};
+//child class that extends parent
+class Info extends Person {
+  constructor(name, age, FavCar, FavFood) {
+    //call the parent class contructor using super
+    super(name, age, FavCar);
+    this.FavFood = FavFood;
+  }
 
-const max = 109;
-const min = 0;
-const arrayLength = 6;
-const randomArray = getRandomArray(max, min, arrayLength);
-const sortedArray=selectionSort(randomArray);
+  MoreInfo() {
+    console.log(
+      `name is ${this.name} and i am ${this.age} i like ${this.FavCar} and i eat alot of ${this.FavFood}`
+    );
+  }
+}
 
-console.log("random array:", randomArray);
-console.log('sorted array:',sortedArray);
+//create an instance of person
+const Student1 = new Person("john", 23, "Mustang");
+const Student2 = new Info("tom", 19, "BMW", "pizza");
+
+//call the greet method of the student1 instance
+Student1.greet();
+//call the more info function 
+Student2.MoreInfo();
