@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# API URL for a random useless fact (version 2)
+api_url="https://uselessfacts.jsph.pl/api/v2/facts/random"
+
+# Fetch a random useless fact
+fact_data=$(curl -s "$api_url")
+
+# Check if the request was successful
+if [[ "$?" -ne 0 ]]; then
+  echo "Error: Failed to retrieve useless fact (curl error)."
+  exit 1
+fi
+
+# Extract and print the fact text
+fact=$(echo "$fact_data" | jq -r '.text' 2>/dev/null)
+
+# Output the fact if parsing was successful
+if [[ -n "$fact" ]]; then
+  echo "$fact"
+else
+  echo "Error: Failed to parse useless fact."
+fi

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Define the API URL for a random quote
+api_url="https://qapi.vercel.app/api/random"
+
+# Fetch a random quote
+quote_data=$(curl -s "$api_url")
+
+# Check if the request was successful
+if [[ "$?" -ne 0 ]]; then
+  echo "Error: Failed to retrieve quote (curl error)."
+  exit 1
+fi
+
+# Extract and print the quote text
+quote=$(echo "$quote_data" | jq -r '.quote' 2>/dev/null)
+
+# Output the quote if parsing was successful and not null
+if [[ -n "$quote" ]] && [[ "$quote" != "null" ]]; then
+  echo "$quote"
+fi

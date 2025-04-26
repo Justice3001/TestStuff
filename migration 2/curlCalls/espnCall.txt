@@ -1,0 +1,23 @@
+HTTP/2 200 
+content-type: text/html;charset=UTF-8
+content-length: 248658
+date: Sun, 26 Jan 2025 18:51:54 GMT
+cache-control: max-age=0, must-revalidate
+access-control-allow-origin: *
+content-security-policy: frame-ancestors  'self' asia.espn.com:* asia.espnqa.com:* *.espn.com:* *.espnqa.com:* *.espnsb.com:* *.espnsb.com *.espn.co.uk *.espndeportes.espn.com *.espn.com.br *.espn.com.mx *.espn.com.ve *.espn.com.ar *.espn.com.co *.espnfc.com.au *.espn.com.au *.espn.in *.espn.com.sg *.espn.cl *.espn.ph *.espn.ph:* *.espn.com.pe *.espn.com.gt *.espn.com.do *.espn.com.ec *.espn.com.uy *.espn.com.pa *.espn.co.cr qa.abcnews.go.com preview.abcnews.go.com abc7ny.com abc7.com *.abcotvssb.com preview.goodmorningamerica.com http://*.espnqa.com:* http://*.espn.com:* *.abcotvssb.com *.abcnews.go.com *.abcnews.go.com:* http://*.abcnews.go.com:* abc30.com abc7news.com abc13.com abc7chicago.com 6abc.com abc11.com *.goodmorningamerica.com qa.abc7.com qa.abc30.com qa.abc7news.com qa.abc13.com qa.abc7chicago.com qa.6abc.com qa.abc7ny.com qa.abc11.com *.abcnews.go.com:* abcnews.go.com qa.secsports.com *.secsports.com https://*.espn.com:* *.espnqa.com:*
+etag: W/"40208d1b72df36fceb29f4e9ae26b93a38dd8671"
+via: 1.1 varnish (Varnish/6.0), 1.1 6c3f0c3452643fca1b8580e04f18c2d8.cloudfront.net (CloudFront)
+vary: Accept-Encoding
+accept-ranges: bytes
+set-cookie: connectionspeed=full; path=/; Expires=Sun, 02 Feb 2025 18:51:54 GMT;
+set-cookie: edition-view=espn-en-us; path=/; Expires=Sun, 02 Feb 2025 18:51:54 GMT;
+set-cookie: edition=espn-en-us; path=/; Expires=Sun, 02 Feb 2025 18:51:54 GMT;
+set-cookie: country=us; path=/;
+set-cookie: region=ccpa; path=/; Expires=Sun, 02 Feb 2025 18:51:54 GMT;
+set-cookie: _dcf=1; path=/; Expires=Sun, 02 Feb 2025 18:51:54 GMT;
+set-cookie: SWID=E2B37BAC-C6F2-46BE-C691-EBF2824CAA36; path=/; Expires=Thu, 26 Jan 2045 18:51:54 GMT; domain=espn.com;
+set-cookie: userab_1=eplus_pw_pre_mobile-55%2Apre-168%2Cespn_app_homefeed_31_app-309%2Ahfa-d-1245%2Cespn_app_playlists_fallback-297%2Aplethora-b-1171%2Cespn_app_playlists_home-294%2Aplethora-c-1153%2Cespn_app_playlists_home_article-299%2Aplethora-d-1182%2Cespn_app_playlists_score-295%2Aplethora-c-1159%2Cespn_my_news_design_a-87%2Amy_news_variation1-308%2Cespn_onefeed_my_news-246%2Aplethora-a-934%2Cespn_watch_for_you-306%2Awatch-fy-a-1217%2Cespn_watch_rfy_latest-305%2Awatch-fy-a-1210%2Cespn_web_standalone_video-113%2Aplethora-b-401%2Cespnplus_paywall_prepurchase-106%2Avariant_a-371%2Cweb_index1_hlstack-117%2Agolf_stacka-415%2Cweb_index1_pres-99%2Aenhanced-346; Expires=Sun, 26 Jan 2025 22:51:54 GMT; Domain=www.espn.com; Path=/
+x-cache: Miss from cloudfront
+x-amz-cf-pop: ATL58-P7
+x-amz-cf-id: rVjGBM7wYx4mKfivavrpkQqw_02V2f8hz1gd4iTjHeL3pn9DNQsCfg==
+

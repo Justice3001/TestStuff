@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Define the base URL for the PokeAPI Pokemon endpoint
+base_url="https://pokeapi.co/api/v2/pokemon/"
+
+# Function to get the total number of Pokemon with error handling
+get_total_pokemon() {
+  local response
+  response=$(curl -s "$base_url")
+  if [[ "$?" -ne 0 ]]; then
+    echo "Error: Failed to retrieve Pokemon count (curl error)."
+    return 1
+  fi
+  local count=$(echo "$response" | jq -r '.count' 2>/dev/null)
+  if [[ -z "$count" ]]; then
+    echo "Error: Failed to parse Pokemon count (jq error)."
+    return 1
+  fi
+  echo "$count"
+}
+
+# Get the total number of Pokemon
+total_pokemon=$(get_total_pokemon)
+
+# Exit if getting the total failed
+if [[ -z "$total_pokemon" ]]; then
+  exit 1
+fi
+
+# Generate a random Pokemon ID between 1 and the total number
+random_id=$((1 + RANDOM % total_pokemon))
+
+# Construct the URL for the random Pokemon
+random_url="$base_url$random_id/"
+
+# Fetch the data for the random Pokemon with error handling
+pokemon_data=$(curl -s "$random_url")
+if [[ "$?" -ne 0 ]]; then
+  echo "Error: Failed to retrieve Pokemon data for ID $random_id (curl error)."
+  exit 1
+fi
+
+# Check if the returned data is valid JSON and extract the name
+pokemon_name=$(echo "$pokemon_data" | jq -r '.name' 2>/dev/null)
+
+# Output the Pokemon name if parsing was successful
+if [[ -n "$pokemon_name" ]]; then
+  echo "$pokemon_name"
+else
+  echo "Error: Failed to parse Pokemon name (jq error)."
+fi

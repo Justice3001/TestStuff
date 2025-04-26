@@ -1,0 +1,70 @@
+#!/bin/bash
+#input must me like ./word just for random word the ./word {example word} for dictionary
+# Function to get word information (definitions and examples only)
+get_word_info() {
+  local word="$1"
+  local api_url="https://api.dictionaryapi.dev/api/v2/entries/en/$word"
+
+  local word_data=$(curl -s "$api_url")
+
+  if [[ "$?" -ne 0 ]]; then
+    echo "Error: Failed to retrieve word data for '$word' (curl error)."
+    return 1
+  fi
+
+  if echo "$word_data" | jq -e '.[0]' > /dev/null; then
+    echo "Information for '$word':"
+    local definitions=$(echo "$word_data" | jq -r '.[0].meanings[].definitions[].definition // empty')
+    local examples=$(echo "$word_data" | jq -r '.[0].meanings[].definitions[].example // empty')
+
+    if [[ -n "$definitions" ]]; then
+      echo "Definitions:"
+      while IFS= read -r definition; do
+        echo "- $definition"
+      done <<< "$definitions"
+    fi
+
+    if [[ -n "$examples" ]]; then
+      echo -e "\nExamples:"
+      while IFS= read -r example; do
+        echo "- $example"
+      done <<< "$examples"
+    fi
+
+    if [[ -z "$definitions" ]] && [[ -z "$examples" ]]; then
+      echo -e "\nNo definitions or examples found for '$word'."
+    fi
+  else
+    local error_message=$(echo "$word_data" | jq -r '.message // "Word not found."')
+    echo "Error: $error_message"
+  fi
+}
+
+# Function to get a random word of the day (using a different API)
+get_random_word_of_the_day() {
+  local api_url_wod="https://random-word-api.herokuapp.com/word"
+  local word_of_day=$(curl -s "$api_url_wod" | jq -r '.[0]' 2>/dev/null)
+
+  if [[ "$?" -ne 0 ]] || [[ -z "$word_of_day" ]]; then
+    echo "Error: Failed to retrieve random word of the day."
+    return 1
+  fi
+  echo "$word_of_day"
+}
+
+# Main script logic
+if [[ -z "$1" ]]; then
+  # No word provided, get a random word of the day and its info
+  echo "No word provided. Getting a random word of the day with definitions and examples..."
+  random_word=$(get_random_word_of_the_day)
+  if [[ -n "$random_word" ]]; then
+    echo -e "\nWord of the Day: $random_word"
+    get_word_info "$random_word"
+  else
+    echo "Failed to get the word of the day."
+  fi
+else
+  # Word provided as an argument
+  word_to_lookup="$1"
+  get_word_info "$word_to_lookup"
+fi
